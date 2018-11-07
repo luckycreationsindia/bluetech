@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BlueTech.iml" filepath="$PROJECT_DIR$/BlueTech.iml" />
+      <module fileurl="file://$PROJECT_DIR$/@ProductsModule/CategoryManagement/CategoryManagement.iml" filepath="$PROJECT_DIR$/@ProductsModule/CategoryManagement/CategoryManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/@ProductsModule/ProductManagement/ProductManagement.iml" filepath="$PROJECT_DIR$/@ProductsModule/ProductManagement/ProductManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/@UserModules/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/@UserModules/UserManagement/UserManagement.iml" />
+    </modules>
+  </component>
+</project>
