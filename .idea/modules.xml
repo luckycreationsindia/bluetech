@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BlueTech.iml" filepath="$PROJECT_DIR$/BlueTech.iml" />
       <module fileurl="file://$PROJECT_DIR$/@ProductsModule/CategoryManagement/CategoryManagement.iml" filepath="$PROJECT_DIR$/@ProductsModule/CategoryManagement/CategoryManagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/@ProductsModule/ProductManagement/ProductManagement.iml" filepath="$PROJECT_DIR$/@ProductsModule/ProductManagement/ProductManagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/@UserModules/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/@UserModules/UserManagement/UserManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/@UsersModule/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/@UsersModule/UserManagement/UserManagement.iml" />
     </modules>
   </component>
 </project>

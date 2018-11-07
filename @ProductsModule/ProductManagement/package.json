@@ -9,20 +9,5 @@
   "author": "Lucky",
   "license": "ISC",
   "dependencies": {
-    "assert": "latest",
-    "bcryptjs": "latest",
-    "body-parser": "latest",
-    "cookie-parser": "latest",
-    "debug": "latest",
-    "ejs": "latest",
-    "express": "latest",
-    "express-jwt": "latest",
-    "express-jwt-permissions": "latest",
-    "jsonwebtoken": "latest",
-    "mongoose": "latest",
-    "mongoose-paginate-v2": "latest",
-    "morgan": "latest",
-    "node-env-file": "latest",
-    "passport": "latest"
   }
 }
