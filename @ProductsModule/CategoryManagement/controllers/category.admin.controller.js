@@ -16,10 +16,11 @@ exports.category_create = function (req, res, next) {
 
     category.save(function (err) {
         if (err) {
-            return next(err);
+            result.message = 'Error';
+            return res.json(result);
         }
         result.status = 'Success';
-        result.message = 'Category Created Successfully';
+        result.message = 'Created Successfully';
         return res.json(result);
     })
 };
@@ -27,9 +28,12 @@ exports.category_create = function (req, res, next) {
 exports.category_update = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.findOneAndUpdate(req.params.id, {$set: req.body}, function (err, category) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
-        result.message = 'Category Updated Successfully';
+        result.message = 'Updated Successfully';
         return res.json(result);
     });
 };
@@ -37,9 +41,12 @@ exports.category_update = function (req, res, next) {
 exports.category_delete = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.findOneAndDelete(req.params.id, function (err) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
-        result.message = 'Category Deleted Successfully';
+        result.message = 'Deleted Successfully';
         return res.json(result);
     })
 };
@@ -47,7 +54,10 @@ exports.category_delete = function (req, res, next) {
 exports.total_categories = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.countDocuments({}, function (err, count) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
         result.message = 'Success';
         result.count = count;
@@ -72,7 +82,10 @@ exports.load_categories = function (req, res, next) {
         options.limit = parseInt(req.query.limit);
     }
     Category.paginate({}, options, function(err, categoriesresult) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
         result.message = 'Success';
         result.data = categoriesresult;
@@ -84,7 +97,8 @@ exports.category_details = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.findById(req.params.id, function (err, category) {
         if (err) {
-            return next(err);
+            result.message = 'Error';
+            return res.json(result);
         }
         result.status = 'Success';
         result.message = 'Success';

@@ -9,11 +9,10 @@ const assert = require('assert');
 env(__dirname + '/.env');
 assert.equal(process.env.MONGODB_BLUETECH_DEV_URI, "mongodb://127.0.0.1:27017/bluetechdev");
 
-var indexRouter = require('./routes/index'); // Imports routes for the index
-var UserManagementRouter = require('bluetechusermanagement/main'); // Imports routes for the users
-var CategoryManagementRouter = require('bluetechcategorymanagement/main'); // Imports routes for the categories
-var CategoryAdminManagementRouter = require('bluetechcategorymanagement/adminmain'); // Imports admin routes for the categories
-var ProductsManagementRouter = require('bluetechproductmanagement/main'); // Imports routes for the products
+let indexRouter = require('./routes/index'); // Imports routes for the index
+let UserManagementRouter = require('bluetechusermanagement/main'); // Imports routes for the users
+let CategoryManagementRouter = require('bluetechcategorymanagement/main'); // Imports routes for the categories
+let ProductsManagementRouter = require('bluetechproductmanagement/main'); // Imports routes for the products
 
 var app = express();
 
@@ -51,7 +50,16 @@ app.get('*.ejs', function(req, res) {
 });
 
 function adminMiddleWare (req, res, next) {
-    let result = UserManagementRouter.getUserProfile(req.headers['x-access-token']);
+    let result = UserManagementRouter.validateadmintoken(req.headers['x-access-token']);
+    if(result.status === "Success") {
+        next();
+    } else {
+        res.status(401).json(result);
+    }
+}
+
+function userMiddleWare (req, res, next) {
+    let result = UserManagementRouter.validateToken(req.headers['x-access-token']);
     if(result.status === "Success") {
         next();
     } else {
@@ -62,8 +70,9 @@ function adminMiddleWare (req, res, next) {
 app.use('/admin', adminMiddleWare);
 app.use('/', indexRouter);
 app.use('/users', UserManagementRouter);
-app.use('/categories', CategoryManagementRouter);
-app.use('/admin/categories', CategoryAdminManagementRouter);
-app.use('/products', ProductsManagementRouter);
+app.use('/categories', CategoryManagementRouter.category);
+app.use('/admin/categories', CategoryManagementRouter.categoryadmin);
+app.use('/products', ProductsManagementRouter.product);
+app.use('/admin/products', ProductsManagementRouter.productadmin);
 
 module.exports = app;

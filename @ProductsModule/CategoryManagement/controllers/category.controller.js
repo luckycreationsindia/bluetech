@@ -8,7 +8,8 @@ exports.category_details = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.findById(req.params.id, function (err, category) {
         if (err) {
-            return next(err);
+            result.message = 'Error';
+            return res.json(result);
         }
         result.status = 'Success';
         result.message = 'Success';
@@ -20,7 +21,10 @@ exports.category_details = function (req, res, next) {
 exports.total_categories = function (req, res, next) {
     let result = {status : "Failure", message : "Error Processing your Request"};
     Category.countDocuments({}, function (err, count) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
         result.message = 'Success';
         result.count = count;
@@ -45,7 +49,10 @@ exports.load_categories = function (req, res, next) {
         options.limit = parseInt(req.query.limit);
     }
     Category.paginate({}, options, function(err, categoriesresult) {
-        if (err) return next(err);
+        if (err) {
+            result.message = 'Error';
+            return res.json(result);
+        }
         result.status = 'Success';
         result.message = 'Success';
         result.data = categoriesresult;
